@@ -1,102 +1,196 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link href="style.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-        <title>Tesla - Prova - Produto</title>
-    </head>
-    <body>
-        <div class="container">
-          <div class="alert alert-secondary text-center" role="alert">
-            TESLA - PROVA
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/jquery-3.1.js"></script>
+    <script src="js/events.js"></script>
+    <title>Tesla - Prova - Produto</title>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        const urlParams = new URLSearchParams(location.search);
+        //console.log(urlParams.get("prod"));
+        DetailsProducts(urlParams.get("prod"));
+      });
+    </script>
+    <div class="container">
+      <div class="alert alert-secondary text-center" role="alert">
+        TESLA - PROVA
+      </div>
+
+      <div class="row">
+        <div class="col col-lg-5" id="imgProd"></div>
+        <div class="col col-lg-7">
+          <small><a href="index.html?categoria=1">Iluminação</a></small>
+          <h1 id="nameProduct"></h1>
+          <div class="row mb-3">
+            <div class="col">
+              <small>1 unidade por</small><br />
+              <span class="h4 text-danger">R$ 68.95</span>
+            </div>
+            <div class="col" id="infoParcelado"></div>
+            <div class="col">
+              <button class="btn btn-danger d-block h-100 w-100">
+                Comprar
+              </button>
+            </div>
           </div>
-
-          <div class="row">
-            <div class="col col-lg-5">
-              <img src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-6.png" class="img-fluid" alt="">
+          <div class="alert alert-warning" role="alert">
+            <h6>Calcular Frete</h6>
+            <div class="row">
+              <div class="col">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="CEP"
+                  id="zipcode"
+                />
+              </div>
+              <div class="col">
+                <button
+                  class="btn btn-secondary d-block h-100 w-100"
+                  onclick="GetFreightTables()"
+                >
+                  Calcular Frete
+                </button>
+              </div>
             </div>
-            <div class="col col-lg-7">
-               <small><a href="index.html?categoria=1">Iluminação</a></small>
-               <h1>Arandela 01 Lâmpada 1-B Ouro Velho - Ideal</h1>     
-               <div class="row mb-3">
-                <div class="col">
-                  <small>1 unidade por</small><br>
-                  <span class="h4 text-danger">R$ 68.95</span>
-                </div>
-                <div class="col">
-                  <small>ou em até 3x de</small><br>
-                  <span class="h4 text-danger">R$ 22,98</span>
-                </div>
-                <div class="col">
-                  <button class="btn btn-danger d-block h-100 w-100">Comprar</button>
-                </div>
-               </div>
-                <div class="alert alert-warning" role="alert">
-                  <h6>Calcular Frete</h6>
-                  <div class="row">
-                    <div class="col">
-                      <input type="text" class="form-control" placeholder="CEP">
-                    </div>
-                    <div class="col">
-                      <button class="btn btn-secondary d-block h-100 w-100">Calcular Frete</button>
-                    </div>
-                  </div>
-                  <p class="mb-0 mt-3 text-center">Entrega em 3 dias úteis no valor de <strong>R$ 8,00</strong></p>
-                </div>
-               <p><strong>Descrição do produto ... </strong></p>  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  <p><strong>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</strong></p>  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  <p><strong>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</strong></p>  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  <p><strong>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</strong></p>  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>  
-            </div>
+            <p class="mb-0 mt-3 text-center" id="msgFreight"></p>
           </div>
-
-          <h4>Veja também</h4>
-          <div class="row row-cols-1 row-cols-md-4 g-4">
-            
-            <div class="col">
-                <a class="card h-100" href="product.html">
-                  <img src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-1.png" class="card-img-top" alt="">
-                  <div class="card-body">
-                    <small class="card-subtitle text-muted">Iluminação</small>
-                    <h5 class="card-title">Plafon Clean 25 Cm Branco com Fixador Cromado - Bronzearte</h5>
-                    <p class="card-text mb-0">R$ 15,90</p>
-                    <small class="card-text">em até 3x de R$ 5,30</small>
-                </div>
-                </a>
-            </div>
-            <div class="col">
-                <a class="card h-100" href="product.html">
-                  <img src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-2.png" class="card-img-top" alt="">
-                  <div class="card-body">
-                    <small class="card-subtitle text-muted">Iluminação</small>
-                    <h5 class="card-title">Lâmpada Eletrônica 3u 15w 127v 6400k - Taschibra</h5>
-                    <p class="card-text mb-0">R$ 9,90</p>
-                    <small class="card-text">em até 3x de R$ 3,30</small>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a class="card h-100" href="product.html">
-                  <img src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-3.png" class="card-img-top" alt="">
-                  <div class="card-body">
-                    <small class="card-subtitle text-muted">Iluminação</small>
-                    <h5 class="card-title">Spot de Embutir Fixo para Lâmpada R63 10,5cm Branco Ref. Mr063fbr - Bronzearte</h5>
-                    <p class="card-text mb-0">R$ 13,90</p>
-                    <small class="card-text">&nbsp;</small>
-                </div>
-                </a>
-            </div>
-            <div class="col">
-                <a class="card h-100" href="product.html">
-                  <img src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-4.png" class="card-img-top" alt="">
-                  <div class="card-body">
-                    <small class="card-subtitle text-muted">Iluminação</small>
-                    <h5 class="card-title">Lâmpada Decorativa para Abajur Love Luz Amarela</h5>
-                    <p class="card-text mb-0">R$ 32,90</p>
-                    <small class="card-text">&nbsp;</small>
-                  </div>
-                </a>
-            </div>
+          <p><strong>Descrição do produto ... </strong></p>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo.
+          </p>
+          <p>
+            <strong
+              >Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas.</strong
+            >
+          </p>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo.
+          </p>
+          <p>
+            <strong
+              >Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas.</strong
+            >
+          </p>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo.
+          </p>
+          <p>
+            <strong
+              >Pellentesque habitant morbi tristique senectus et netus et
+              malesuada fames ac turpis egestas.</strong
+            >
+          </p>
+          <p>
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae,
+            ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam
+            egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+            eleifend leo.
+          </p>
         </div>
+      </div>
 
+      <h4>Veja também</h4>
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+          <a class="card h-100" href="product.html">
+            <img
+              src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-1.png"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <small class="card-subtitle text-muted">Iluminação</small>
+              <h5 class="card-title">
+                Plafon Clean 25 Cm Branco com Fixador Cromado - Bronzearte
+              </h5>
+              <p class="card-text mb-0">R$ 15,90</p>
+              <small class="card-text">em até 3x de R$ 5,30</small>
+            </div>
+          </a>
         </div>
-    </body>
+        <div class="col">
+          <a class="card h-100" href="product.html">
+            <img
+              src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-2.png"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <small class="card-subtitle text-muted">Iluminação</small>
+              <h5 class="card-title">
+                Lâmpada Eletrônica 3u 15w 127v 6400k - Taschibra
+              </h5>
+              <p class="card-text mb-0">R$ 9,90</p>
+              <small class="card-text">em até 3x de R$ 3,30</small>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="card h-100" href="product.html">
+            <img
+              src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-3.png"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <small class="card-subtitle text-muted">Iluminação</small>
+              <h5 class="card-title">
+                Spot de Embutir Fixo para Lâmpada R63 10,5cm Branco Ref.
+                Mr063fbr - Bronzearte
+              </h5>
+              <p class="card-text mb-0">R$ 13,90</p>
+              <small class="card-text">&nbsp;</small>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a class="card h-100" href="product.html">
+            <img
+              src="https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-4.png"
+              class="card-img-top"
+              alt=""
+            />
+            <div class="card-body">
+              <small class="card-subtitle text-muted">Iluminação</small>
+              <h5 class="card-title">
+                Lâmpada Decorativa para Abajur Love Luz Amarela
+              </h5>
+              <p class="card-text mb-0">R$ 32,90</p>
+              <small class="card-text">&nbsp;</small>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
