@@ -21,7 +21,7 @@
     <script>
       $(document).ready(function () {
         const urlParams = new URLSearchParams(location.search);
-        //console.log(urlParams.get("prod"));
+
         DetailsProducts(urlParams.get("prod"));
       });
     </script>
@@ -38,7 +38,7 @@
           <div class="row mb-3">
             <div class="col">
               <small>1 unidade por</small><br />
-              <span class="h4 text-danger">R$ 68.95</span>
+              <span class="h4 text-danger" id="msgPrice"></span>
             </div>
             <div class="col" id="infoParcelado"></div>
             <div class="col">

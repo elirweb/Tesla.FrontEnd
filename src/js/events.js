@@ -77,7 +77,7 @@ var DetailsProducts = function(id){
          
           var parcelado = priceParcelado.replace(',','.') / 5.00;
           parcelado = Math.ceil(parcelado)-1;
-       
+       $("#msgPrice").html(valorFormatado);
           $("#imgProd").html("<img src=\"https://tcm-assets-dev.s3-sa-east-1.amazonaws.com/prova/product/img/main/prod-"+value.id+".png\" class=\"img-fluid\" alt=\"\" />");
          $("#infoParcelado").html("<small>ou em até "+parcelado+"x de </small><br /> <span class=\"h4 text-danger\"> R$ "+ (priceParcelado.replace(',','.') /parcelado).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$','')  +"</span>");
         })
@@ -97,13 +97,17 @@ $.ajax({
 
 })
 .done(function(data) {
-    var price = data.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$','');
-    if(data.deliveryTime != ""){
+
+    if(data != undefined){
+        var price = data.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$','');
+   
         $("#msgFreight").html("Entrega em "+data.deliveryTime+" dias úteis no valor de <strong>R$ "+price+"</strong>");
     }else {
         $("#msgFreight").html("Frete não disponivel");
         
     }
+
+    console.log(data);
 })
  .fail(function() {
     alert('deu erro')
